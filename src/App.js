@@ -25,7 +25,7 @@ const App = () => {
 
     // Manually restore the cursor position
     window.requestAnimationFrame(() => {
-      head ? range.setStart(contentRef.current.childNodes[0], startOffset) : range.setStart(contentRef.current.childNodes[0], startOffset);
+      head ? range.setStart(headerRef.current.childNodes[0], startOffset) : range.setStart(contentRef.current.childNodes[0], startOffset);
       range.collapse(true);
       selection.removeAllRanges();
       selection.addRange(range);
