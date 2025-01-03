@@ -2,9 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 
 const App = () => {
   const storedContent = localStorage.getItem("content");
+  const storedHeader = localStorage.getItem("header");
+  const storedTheme = localStorage.getItem("theme");
   const [content, setContent] = useState(storedContent ?? "Hello World");
-  const [header, setHeader] = useState("Your Notes Here");
-  const [theme, setTheme] = useState("light");
+  const [header, setHeader] = useState(storedHeader ?? "Your Notes Here");
+  const [theme, setTheme] = useState(storedTheme ?? "light");
   const contentRef = useRef(null);
   const headerRef = useRef(null);
 
@@ -51,6 +53,7 @@ const App = () => {
             id="checkbox"
             onChange={(e) => {
               setTheme(e.target.checked ? "dark" : "light");
+              localStorage.setItem("theme", e.target.checked ? "dark" : "light");
             }}
             type="checkbox"
           />
