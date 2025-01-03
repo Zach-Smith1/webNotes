@@ -1,0 +1,45 @@
+{
+  "name": "rbs",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "16.x",
+    "npm": "9.x"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "start": "node server.js",
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "@babel/traverse": "^7.23.2",
+    "axios": "^1.4.0",
+    "buffer": "^6.0.3",
+    "css-loader": "^6.7.2",
+    "express": "4.18.2",
+    "papaparse": "^5.4.1",
+    "querystring-es3": "^0.2.1",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-dom": "^18.2.0",
+    "stream-browserify": "^3.0.0",
+    "style-loader": "^3.3.1",
+    "util": "^0.12.5",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "babel-loader": "^9.1.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
