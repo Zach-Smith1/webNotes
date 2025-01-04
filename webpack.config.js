@@ -1,25 +1,18 @@
-const webpack = require('webpack');
+// filepath: /Users/zachsmith/Desktop/webNotes/webpack.config.js
 const path = require('path');
 
-const config = {
+module.exports = {
   entry: './src/index.js',
-  devtool: "eval-cheap-source-map",
   resolve: {
     fallback: {
-    "fs": false,
-    "tls": false,
-    "net": false,
-    "path": false,
-    "zlib": false,
-    "http": false,
-    "https": false,
-    "stream": require.resolve('stream-browserify'),
-    "buffer": require.resolve("buffer/"),
-    "crypto": false,
-    "url": false,
-    "util": require.resolve("util/"),
-    "querystring": require.resolve("querystring-es3"),
-    "assert": false
+      "https": false,
+      "stream": require.resolve('stream-browserify'),
+      "buffer": require.resolve("buffer/"),
+      "crypto": false,
+      "url": false,
+      "util": require.resolve("util/"),
+      "querystring": require.resolve("querystring-es3"),
+      "assert": false
     }
   },
   output: {
@@ -30,11 +23,14 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"]
+          }
+        },
         exclude: /node_modules/
       }
     ]
   }
 };
-
-module.exports = config;
