@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const App = () => {
+  const greeting = "Look no further for your minimalistic writing needs! This is a simple note-taking app that saves your notes in your browser's local storage. You can start typing your notes here and they will be saved automatically. You can also switch between light and dark mode by toggling the switch at the top right corner. This is a work in progress and more features will be added soon. For now, click HERE to start typing your notes!";
+  const firstHeader = "Welcome to Web Notes!";
   const storedContent = localStorage.getItem("content");
   const storedHeader = localStorage.getItem("header");
   const storedTheme = localStorage.getItem("theme");
-  const [content, setContent] = useState(storedContent ?? "Hello World");
-  const [header, setHeader] = useState(storedHeader ?? "Your Notes Here");
+  const [content, setContent] = useState(storedContent ?? greeting);
+  const [header, setHeader] = useState(storedHeader ?? firstHeader);
   const [theme, setTheme] = useState(storedTheme ?? "light");
   const contentRef = useRef(null);
   const headerRef = useRef(null);
@@ -45,24 +47,26 @@ const App = () => {
   }, [theme]);
 
   return (
-    <div>
-      <div className="checkbox-wrapper">
-          <input
-            checked={theme !== "light"}
-            className="checkbox"
-            id="checkbox"
-            onChange={(e) => {
-              setTheme(e.target.checked ? "dark" : "light");
-              localStorage.setItem("theme", e.target.checked ? "dark" : "light");
-            }}
-            type="checkbox"
-          />
-          <label className="checkbox-label" htmlFor="checkbox">
-            <i className="fas fa-moon"></i>
-            <i className="fas fa-sun"></i>
-            <span className="ball"></span>
-          </label>
-        </div>
+    <div className="App">
+      <div class="toolBar">
+        <div className="checkbox-wrapper">
+            <input
+              checked={theme !== "light"}
+              className="checkbox"
+              id="checkbox"
+              onChange={(e) => {
+                setTheme(e.target.checked ? "dark" : "light");
+                localStorage.setItem("theme", e.target.checked ? "dark" : "light");
+              }}
+              type="checkbox"
+            />
+            <label className="checkbox-label" htmlFor="checkbox">
+              <i className="fas fa-moon"></i>
+              <i className="fas fa-sun"></i>
+              <span className="ball"></span>
+            </label>
+          </div>
+      </div>
       <h1
         contentEditable
         onInput={(e) => updateContent(e, 'head')}

@@ -1,12 +1,19 @@
 h1 {
   text-align: center;
+  text-decoration: underline;
+  font-size: 3rem;
 }
 .allText {
-  width: 94vw;
+  width: 84vw;
   height: 100vh;
   font-size: 20px;
   padding: 10px;
   margin: 10px;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .checkbox {
   opacity: 0;
@@ -62,4 +69,17 @@ h1 {
 .dark {
   background-color: #363837;
   color: white;
+  transition: background-color 0.5s, color 0.5s;
+}
+.light {
+  background-color: white;
+  color: black;
+  transition: background-color 0.5s, color 0.5s;
+}
+.toolBar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: -20px;
 }
