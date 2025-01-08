@@ -69,7 +69,7 @@ const App = () => {
     // Update local storage directly
     if (head) {
       localStorage.setItem("header", newContent);
-      setHeader(newContent); // Only update state for header
+
     } else {
       localStorage.setItem("content", newContent);
     }
@@ -157,6 +157,7 @@ const App = () => {
       </div>
       <h1
         contentEditable
+        onKeyDown={handleKeyDown}
         onInput={(e) => updateContent(e, 'head')}
         ref={headerRef}
         suppressContentEditableWarning
@@ -166,8 +167,8 @@ const App = () => {
       <div
         className='allText'
         contentEditable
-        onKeyDown={handleKeyDown}
         onInput={(e) => updateContent(e)}
+        onKeyDown={handleKeyDown}
         ref={contentRef}
         suppressContentEditableWarning
       >
