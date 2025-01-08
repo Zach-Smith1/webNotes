@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const App = () => {
-  const greeting = "Look no further for your minimalistic writing needs! This is a simple note-taking app that saves your notes in your browser's local storage. You can start typing your notes here and they will be saved automatically. You can also switch between light and dark mode by toggling the switch at the top right corner. This is a work in progress and more features will be added soon. For now, to start typing your notes click";
+  const greeting = "Look no further for your minimalistic writing needs! This is a simple note-taking app that saves your notes in your browser's local storage.<br><br> You can start typing your notes here and they will be saved automatically! You can also switch between light and dark mode by toggling the switch at the top right corner.<br><br> This is a work in progress and more features will be added soon. For now, to start typing your notes click";
   const firstHeader = "Welcome to Web Notes!";
   const [firstRefresh, setFirstRefresh] = useState(false);
   const storedContent = localStorage.getItem("content");
@@ -14,6 +14,7 @@ const App = () => {
   const headerRef = useRef(null);
 
   const handleKeyDown = (e) => {
+    console.log(localStorage.getItem("content"));
     if (e.key === "Enter") {
       e.preventDefault();
 
@@ -115,7 +116,7 @@ const App = () => {
       <div className="toolBar">
           <div className="icon-wrapper">
             <i
-              className="fa-solid fa-rotate"
+              className={`fa-solid fa-rotate ${firstRefresh ? 'red' : ''}`}
               onClick={(e) => {
                 if (firstRefresh) {
                   localStorage.removeItem("content");
@@ -124,6 +125,7 @@ const App = () => {
                   setHeader(firstHeader);
                   setFirstRefresh(false);
                   e.target.style.transform = "rotate(0deg)";
+                  window.location.reload();
                 } else {
                 setFirstRefresh(true);
                 e.target.style.transition = "transform 0.5s";
@@ -170,6 +172,7 @@ const App = () => {
         onInput={(e) => updateContent(e)}
         onKeyDown={handleKeyDown}
         ref={contentRef}
+        style={{ fontSize: "1.5rem" }}
         suppressContentEditableWarning
       >
         {content}
