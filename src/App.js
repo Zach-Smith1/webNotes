@@ -10,6 +10,7 @@ const App = () => {
   const [content, setContent] = useState(storedContent ?? greeting);
   const [header, setHeader] = useState(storedHeader ?? firstHeader);
   const [theme, setTheme] = useState(storedTheme ?? "light");
+  const [fullScreen, setFullScreen] = useState(false);
   const contentRef = useRef(null);
   const headerRef = useRef(null);
 
@@ -111,6 +112,51 @@ const App = () => {
     document.body.className = theme;
   }, [theme]);
 
+  const exitFullscreen = () => {
+    const element = document;
+    if (element.exitFullscreen) {
+      element.exitFullscreen();
+    } else if (element.mozCancelFullScreen) {
+      // Firefox
+      element.mozCancelFullScreen();
+    } else if (element.webkitExitFullscreen) {
+      // Chrome, Safari and Opera
+      element.webkitExitFullscreen();
+    } else if (element.msExitFullscreen) {
+      // IE/Edge
+      element.msExitFullscreen();
+    }
+    setFullScreen(false)
+  }
+
+  const goFullscreen = () => {
+    const element = document.documentElement; // The whole page
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      // Firefox
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+      // Chrome, Safari and Opera
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      // IE/Edge
+      element.msRequestFullscreen();
+    }
+    setFullScreen(true)
+  }
+
+  const isFullscreen = () => {
+    const full = document.fullscreenElement != null ||
+           document.mozFullScreenElement != null ||
+           document.webkitFullscreenElement != null ||
+           document.msFullscreenElement != null;
+
+    if (fullScreen !== full) setFullScreen(full);
+    return full;
+  };
+
+
   return (
     <div className="App">
       <div className="toolBar">
@@ -140,6 +186,9 @@ const App = () => {
             <span className={!firstRefresh ? 'confirmed' : 'firstClick'}>&emsp;Are you sure you want to reset? Click again to confirm.</span>
           </div>
         <div className="checkbox-wrapper">
+          <div class="fullscreenContainer" onClick={fullScreen ? exitFullscreen : goFullscreen}>
+            <i className={`fa-solid fa-${fullScreen ? 'minimize' : 'expand'}`}></i>
+          </div>
           <input
             checked={theme !== "light"}
             className="checkbox"
