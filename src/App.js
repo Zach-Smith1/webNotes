@@ -112,6 +112,12 @@ const App = () => {
     document.body.className = theme;
   }, [theme]);
 
+  const clearTitle = () => {
+    if (header === 'Your Title Here') {
+      setHeader('');
+    }
+  }
+
   const exitFullscreen = () => {
     const element = document;
     if (element.exitFullscreen) {
@@ -145,17 +151,6 @@ const App = () => {
     }
     setFullScreen(true)
   }
-
-  const isFullscreen = () => {
-    const full = document.fullscreenElement != null ||
-           document.mozFullScreenElement != null ||
-           document.webkitFullscreenElement != null ||
-           document.msFullscreenElement != null;
-
-    if (fullScreen !== full) setFullScreen(full);
-    return full;
-  };
-
 
   return (
     <div className="App">
@@ -208,6 +203,7 @@ const App = () => {
       </div>
       <h1
         contentEditable
+        onClick={clearTitle}
         onKeyDown={handleKeyDown}
         onInput={(e) => updateContent(e, 'head')}
         ref={headerRef}
