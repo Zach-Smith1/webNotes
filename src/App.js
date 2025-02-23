@@ -182,7 +182,8 @@ const App = () => {
           </div>
         <div className="checkbox-wrapper">
           <div class="fullscreenContainer" onClick={fullScreen ? exitFullscreen : goFullscreen}>
-            <i className={`fa-solid fa-${fullScreen ? 'minimize' : 'expand'}`}></i>
+            <i className={`fa-solid fa-${fullScreen ? 'minimize' : 'expand'}`}
+            style={{fontSize: 'larger'}}></i>
           </div>
           <input
             checked={theme !== "light"}
